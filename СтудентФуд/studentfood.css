@@ -1912,6 +1912,10 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .builder-options-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
 
 
   .reviews-row-grid {
@@ -1982,6 +1986,10 @@ body {
 /* Small Phones */
 @media (max-width: 480px) {
   .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .builder-options-grid {
     grid-template-columns: 1fr;
   }
 
