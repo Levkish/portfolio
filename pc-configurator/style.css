@@ -1743,3 +1743,150 @@ input[type="password"]:focus {
 .forgot-password-link:hover, .terms-link:hover {
   text-decoration: underline;
 }
+
+/* Mobile polish: phone-only refinements, preserving desktop layout. */
+@media (max-width: 640px) {
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .container,
+  .header-container,
+  .footer-container,
+  .footer-bottom-container {
+    width: min(100% - 28px, 1200px);
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .header {
+    min-height: 70px;
+  }
+
+  .logo-text {
+    font-size: 20px;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .login-btn {
+    display: none;
+  }
+
+  .nav {
+    padding: 24px 18px;
+  }
+
+  .hero-section {
+    padding: 34px 0 52px;
+  }
+
+  .hero-container {
+    gap: 28px;
+  }
+
+  .hero-title {
+    font-size: clamp(36px, 12vw, 50px);
+    line-height: 0.98;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    max-width: 34ch;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .hero-actions .btn,
+  .hero-actions .btn-link,
+  .btn-block {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-image-wrapper {
+    min-height: 260px;
+  }
+
+  .hero-pc-image {
+    max-width: min(86vw, 340px);
+  }
+
+  .benefits-grid,
+  .categories-grid,
+  .builds-grid,
+  .why-us-grid,
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .section-title,
+  .cta-title {
+    font-size: clamp(28px, 9vw, 40px);
+    line-height: 1.08;
+  }
+
+  .builds-tabs {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+
+  .builds-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .builds-tabs .tab-btn {
+    flex: 0 0 auto;
+  }
+
+  .build-card,
+  .category-card,
+  .benefit-card,
+  .step-card {
+    border-radius: 18px;
+  }
+
+  .build-image-container {
+    min-height: 230px;
+  }
+
+  .modal-card {
+    width: min(100% - 20px, 560px);
+    max-height: calc(100dvh - 20px);
+    border-radius: 20px;
+  }
+
+  .modal-header,
+  .modal-config-options,
+  .modal-config-summary {
+    padding: 20px 16px;
+  }
+
+  .modal-body {
+    max-height: calc(100dvh - 150px);
+    overflow-y: auto;
+  }
+
+  .auth-card {
+    width: min(100% - 24px, 440px);
+    padding: 28px 18px !important;
+  }
+
+  .auth-actions-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

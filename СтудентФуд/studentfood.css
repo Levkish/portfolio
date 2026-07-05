@@ -2003,3 +2003,147 @@ body {
     width: 105px;
   }
 }
+
+/* Mobile polish: phone-only refinements without touching desktop. */
+@media (max-width: 640px) {
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .header-container,
+  .hero-container,
+  .section-container,
+  .main-content-card,
+  .footer-container {
+    width: min(100% - 28px, 1180px);
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .header {
+    min-height: 72px;
+  }
+
+  .header-container {
+    min-height: 72px;
+  }
+
+  .logo-text {
+    font-size: 20px;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .hero-section {
+    padding: 22px 0 36px;
+  }
+
+  .hero-banner-img {
+    min-height: 300px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 22px;
+  }
+
+  .hero-overlay-content {
+    width: 100%;
+    margin-top: 18px;
+    padding: 0;
+  }
+
+  .hero-title,
+  .hero-title .highlight-black {
+    font-size: clamp(34px, 12vw, 48px);
+    line-height: 1;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    max-width: 32ch;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .hero-actions .btn,
+  .hero-actions .button,
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .main-content-card {
+    border-radius: 22px;
+    padding: 24px 14px;
+  }
+
+  .section-title,
+  .menu-section-header .section-title,
+  .app-title {
+    font-size: clamp(28px, 10vw, 40px);
+    line-height: 1.05;
+  }
+
+  .menu-grid,
+  .combos-grid,
+  .why-us-grid,
+  .steps-grid,
+  .reviews-row-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .menu-card {
+    border-radius: 22px;
+  }
+
+  .menu-image-wrapper {
+    min-height: 210px;
+  }
+
+  .app-section {
+    padding: 44px 0;
+  }
+
+  .app-promo-card {
+    border-radius: 22px;
+    padding: 28px 16px 0;
+    overflow: hidden;
+  }
+
+  .app-info-block {
+    text-align: center;
+  }
+
+  .app-badges-container {
+    width: 100%;
+  }
+
+  .app-badge-link,
+  .app-badge-img {
+    width: min(160px, 100%);
+  }
+
+  .app-phones-container {
+    width: min(250px, 78vw);
+    height: 235px;
+    overflow: hidden;
+  }
+
+  .app-phone {
+    max-width: 48%;
+    height: auto;
+  }
+
+  .cart-sidebar {
+    max-width: 100%;
+  }
+}

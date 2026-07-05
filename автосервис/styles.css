@@ -2694,3 +2694,126 @@ button {
   }
 }
 
+/* Mobile polish: phone-only fixes, desktop layout stays untouched. */
+@media (max-width: 640px) {
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .container,
+  .header__container,
+  .hero__container,
+  .section-container,
+  .about__container,
+  .booking__container,
+  .cta__container,
+  .footer__container {
+    width: min(100% - 32px, 1200px);
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .header__top {
+    padding: 10px 0;
+  }
+
+  .header__actions {
+    gap: 8px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 64px 0 36px;
+  }
+
+  .hero__container {
+    min-height: auto;
+  }
+
+  .hero__content {
+    margin-top: 0;
+  }
+
+  .hero__content h1 {
+    font-size: clamp(30px, 11vw, 42px);
+    line-height: 1.02;
+  }
+
+  .hero__content p {
+    font-size: 15px;
+    max-width: 34ch;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero__actions .button,
+  .button {
+    width: 100%;
+    max-width: 340px;
+    justify-content: center;
+  }
+
+  .hero__features-container {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title,
+  .section-head h2,
+  .booking__title,
+  .cta__content h2 {
+    font-size: clamp(28px, 9vw, 38px);
+    line-height: 1.08;
+  }
+
+  .section-subtitle,
+  .section-head p,
+  .cta__content p {
+    font-size: 15px;
+  }
+
+  .services-grid,
+  .gallery-grid,
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    border-radius: 18px;
+  }
+
+  .service-card__image {
+    min-height: 190px;
+  }
+
+  .booking {
+    padding: 56px 0;
+  }
+
+  .booking-form-inline-container,
+  .booking__form-wrapper {
+    border-radius: 22px;
+    padding: 24px 18px;
+  }
+
+  .booking-fields-grid,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-field-group--empty {
+    display: none;
+  }
+
+  .brands__row {
+    gap: 12px;
+  }
+
+  .footer__grid {
+    gap: 28px;
+  }
+}

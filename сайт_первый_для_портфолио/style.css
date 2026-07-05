@@ -1273,4 +1273,131 @@ img {
   filter: brightness(0.95);
 }
 
+/* Mobile polish: keeps the desktop storefront intact while improving phones. */
+@media (max-width: 640px) {
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .section-container,
+  .nav-container,
+  .hero-container,
+  .footer-container {
+    width: min(100% - 28px, 1280px);
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .header {
+    min-height: 70px;
+  }
+
+  .nav-container {
+    height: 70px;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+
+  .nav-actions {
+    gap: 8px;
+  }
+
+  .hero-section,
+  .category-hero,
+  .pants-hero {
+    height: auto;
+    min-height: 520px;
+    padding: 100px 0 56px;
+  }
+
+  .hero-bg-img,
+  .hero-img-right {
+    object-position: center top;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-title {
+    font-size: clamp(38px, 13vw, 56px);
+    line-height: 0.95;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    max-width: 34ch;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .hero-actions .btn,
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .section-title {
+    font-size: clamp(30px, 10vw, 42px);
+    line-height: 1.05;
+  }
+
+  .categories-grid,
+  .categories-grid.cols-4,
+  .products-grid,
+  .products-grid.cols-5,
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .product-card,
+  .category-card,
+  .detail-card {
+    border-radius: 18px;
+  }
+
+  .product-image-box {
+    min-height: 280px;
+  }
+
+  .product-name {
+    font-size: 16px;
+  }
+
+  .delivery-banner,
+  .season-banner {
+    border-radius: 22px;
+    overflow: hidden;
+  }
+
+  .banner-content {
+    padding: 28px 18px;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .brand-column,
+  .payment-column {
+    grid-column: auto;
+  }
+}
 
