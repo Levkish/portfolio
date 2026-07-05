@@ -1205,10 +1205,7 @@ button {
   }
 
   .booking-banner-mechanic {
-    position: relative;
-    height: 150px;
-    align-self: center;
-    order: -1;
+    display: none !important;
   }
 
   .booking-form-inline-container {
