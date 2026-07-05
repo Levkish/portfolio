@@ -2809,6 +2809,10 @@ button {
     display: none;
   }
 
+  .booking-banner-mechanic {
+    display: none !important;
+  }
+
   .brands__row {
     gap: 12px;
   }
