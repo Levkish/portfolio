@@ -2,7 +2,6 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matc
 const header = document.querySelector('[data-header]');
 const menuButton = document.querySelector('[data-menu-button]');
 const mobileMenu = document.querySelector('[data-mobile-menu]');
-const glow = document.querySelector('.cursor-glow');
 const hero = document.querySelector('[data-hero]');
 const heroCopy = document.querySelector('.hero-copy');
 const heroHalo = document.querySelector('.hero-halo');
@@ -61,25 +60,6 @@ mobileMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click
   mobileMenu.classList.remove('open');
   document.body.style.overflow = '';
 }));
-
-if (glow && !reducedMotion) {
-  let gx = innerWidth / 2;
-  let gy = innerHeight / 2;
-  let tx = gx;
-  let ty = gy;
-  window.addEventListener('pointermove', (event) => {
-    tx = event.clientX;
-    ty = event.clientY;
-  }, { passive: true });
-  const moveGlow = () => {
-    gx += (tx - gx) * 0.08;
-    gy += (ty - gy) * 0.08;
-    glow.style.left = `${gx}px`;
-    glow.style.top = `${gy}px`;
-    requestAnimationFrame(moveGlow);
-  };
-  moveGlow();
-}
 
 const customCursor = document.querySelector('.cursor-sonar');
 const cursorReadout = customCursor?.querySelector('.cursor-readout');
