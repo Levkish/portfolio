@@ -174,10 +174,10 @@ button { color: inherit; font: inherit; }
 .molecule svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .molecule path { fill: none; stroke: rgba(203,255,252,.4); stroke-width: 1; stroke-dasharray: 4 7; }
 .service-list { border-top: 1px solid var(--line); }
-.service-row { min-height: 178px; display: grid; grid-template-columns: 70px 1fr 1fr 44px; align-items: center; gap: 36px; border-bottom: 1px solid var(--line); transition: background .35s, padding .35s var(--ease); }
+.service-row { min-height: 178px; display: grid; grid-template-columns: 70px 1fr 1fr 44px; align-items: center; gap: 36px; border-bottom: 1px solid var(--line); transition: background .35s; }
 .service-row.reveal { transform: translateX(-42px); }
 .service-row.reveal.in-view { transform: translateX(0); }
-.service-row:hover { padding-inline: 24px; background: var(--kelp); }
+.service-row:hover { background: var(--kelp); }
 .service-row > span { color: var(--silver); font-size: 10px; }
 .service-row h3 { margin: 0; font-size: clamp(32px, 4vw, 54px); font-weight: 500; letter-spacing: -.04em; }
 .service-row p { max-width: 430px; margin: 0; color: var(--silver); line-height: 1.5; }
@@ -300,7 +300,6 @@ button { color: inherit; font: inherit; }
   .expertise-intro { min-height: 650px; }
   .molecule { height: 270px; }
   .service-row { grid-template-columns: 34px 1fr 38px; gap: 14px; }
-  .service-row:hover { padding-inline: 10px; }
   .process { padding: 100px 0; }
   .process-grid { grid-template-columns: 1fr; }
   .process-grid li { min-height: 260px; }
