@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#012624">
   <meta name="description" content="Портфолио Льва — дизайн и разработка цифровых продуктов.">
   <title>LEV — digital designer & developer</title>
-  <link rel="stylesheet" href="./style.css?v=9">
+  <link rel="stylesheet" href="./style.css?v=19">
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -102,80 +102,117 @@
         <p class="reveal">Четыре продукта с разной логикой, аудиторией и визуальным голосом.</p>
       </div>
 
-      <div class="project-list">
-        <article class="project project--food reveal" data-tilt>
-          <a href="./СтудентФуд/" target="_blank" rel="noopener" aria-label="Открыть сайт СтудентФуд">
-            <div class="project-info">
-              <span class="project-index">01 / Food service</span>
-              <h3>СтудентФуд</h3>
-              <p>Сервис недорогой еды для студентов: каталог, понятная навигация и живой характер.</p>
-              <ul><li>UX/UI</li><li>Frontend</li><li>Motion</li></ul>
-            </div>
-            <div class="project-visual food-visual" aria-hidden="true">
-              <div class="mock-browser">
-                <div class="mock-bar"><i></i><i></i><i></i><span>student.food</span></div>
-                <div class="food-layout">
-                  <b>Еда без<br>лишних трат.</b>
-                  <div class="food-plate"><span>🥙</span></div>
-                  <small>Собери обед →</small>
+      <div class="coverflow-wrapper reveal" data-coverflow-wrapper>
+        <div class="coverflow-stage" data-coverflow-stage tabindex="0" aria-label="3D Cover Flow галерея проектов">
+          <button class="coverflow-arrow coverflow-arrow--prev" data-coverflow-prev aria-label="Предыдущий проект">‹</button>
+
+          <div class="coverflow-track" data-coverflow-track>
+            <!-- Card 1: СтудентФуд -->
+            <article class="coverflow-card project--food" data-index="0">
+              <a href="./СтудентФуд/" target="_blank" rel="noopener" aria-label="Открыть сайт СтудентФуд">
+                <div class="cf-card-top">
+                  <span class="cf-index">01 / FOOD SERVICE</span>
+                  <span class="cf-link-icon">↗</span>
                 </div>
-              </div>
-            </div>
-            <span class="project-arrow">↗</span>
-          </a>
-        </article>
+                <div class="cf-visual-wrapper food-visual">
+                  <div class="mock-browser">
+                    <div class="mock-bar"><i></i><i></i><i></i><span>student.food</span></div>
+                    <div class="food-layout">
+                      <b>Еда без<br>лишних трат.</b>
+                      <div class="food-plate"><span>🥙</span></div>
+                      <small>Собери обед →</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="cf-card-bottom">
+                  <h3>СтудентФуд</h3>
+                  <p>Сервис недорогой еды для студентов: каталог, понятная навигация и живой характер.</p>
+                  <ul class="cf-tags"><li>UX/UI</li><li>Frontend</li><li>Motion</li></ul>
+                </div>
+              </a>
+              <div class="coverflow-reflection"></div>
+            </article>
 
-        <article class="project project--wear reveal" data-tilt>
-          <a href="./сайт_первый_для_портфолио/" target="_blank" rel="noopener" aria-label="Открыть сайт Blackout">
-            <div class="project-info">
-              <span class="project-index">02 / E-commerce</span>
-              <h3>Blackout</h3>
-              <p>Монохромный магазин одежды, где типографика и продукт задают весь ритм.</p>
-              <ul><li>Art direction</li><li>Storefront</li><li>Adaptive</li></ul>
-            </div>
-            <div class="project-visual wear-visual" aria-hidden="true">
-              <div class="wear-word">BLK<br>OUT</div>
-              <div class="wear-garment"><i></i><b>NEW<br>DROP</b></div>
-              <span>UTILITY / 025</span>
-            </div>
-            <span class="project-arrow">↗</span>
-          </a>
-        </article>
+            <!-- Card 2: Blackout -->
+            <article class="coverflow-card project--wear" data-index="1">
+              <a href="./сайт_первый_для_портфолио/" target="_blank" rel="noopener" aria-label="Открыть сайт Blackout">
+                <div class="cf-card-top">
+                  <span class="cf-index">02 / E-COMMERCE</span>
+                  <span class="cf-link-icon">↗</span>
+                </div>
+                <div class="cf-visual-wrapper wear-visual">
+                  <div class="wear-word">BLK<br>OUT</div>
+                  <div class="wear-garment"><i></i><b>NEW<br>DROP</b></div>
+                  <span class="wear-tag">UTILITY / 025</span>
+                </div>
+                <div class="cf-card-bottom">
+                  <h3>Blackout</h3>
+                  <p>Монохромный магазин одежды, где типографика и продукт задают весь ритм.</p>
+                  <ul class="cf-tags"><li>Art direction</li><li>Storefront</li><li>Adaptive</li></ul>
+                </div>
+              </a>
+              <div class="coverflow-reflection"></div>
+            </article>
 
-        <article class="project project--auto reveal" data-tilt>
-          <a href="./автосервис/" target="_blank" rel="noopener" aria-label="Открыть сайт автосервиса">
-            <div class="project-info">
-              <span class="project-index">03 / Automotive</span>
-              <h3>Автосервис</h3>
-              <p>Уверенный сервисный сайт с записью, услугами и прозрачной коммуникацией.</p>
-              <ul><li>Strategy</li><li>Interface</li><li>Development</li></ul>
-            </div>
-            <div class="project-visual auto-visual" aria-hidden="true">
-              <div class="auto-grid"></div>
-              <div class="auto-wheel"><i></i><i></i><i></i><i></i><i></i></div>
-              <b>ТОЧНОСТЬ<br>В ДЕТАЛЯХ</b>
-              <small>BOOKING — 24/7</small>
-            </div>
-            <span class="project-arrow">↗</span>
-          </a>
-        </article>
+            <!-- Card 3: Автосервис -->
+            <article class="coverflow-card project--auto" data-index="2">
+              <a href="./автосервис/" target="_blank" rel="noopener" aria-label="Открыть сайт автосервиса">
+                <div class="cf-card-top">
+                  <span class="cf-index">03 / AUTOMOTIVE</span>
+                  <span class="cf-link-icon">↗</span>
+                </div>
+                <div class="cf-visual-wrapper auto-visual">
+                  <div class="auto-grid"></div>
+                  <div class="auto-wheel"><i></i><i></i><i></i><i></i><i></i></div>
+                  <b>ТОЧНОСТЬ<br>В ДЕТАЛЯХ</b>
+                  <small>BOOKING — 24/7</small>
+                </div>
+                <div class="cf-card-bottom">
+                  <h3>Автосервис</h3>
+                  <p>Уверенный сервисный сайт с записью, услугами и прозрачной коммуникацией.</p>
+                  <ul class="cf-tags"><li>Strategy</li><li>Interface</li><li>Development</li></ul>
+                </div>
+              </a>
+              <div class="coverflow-reflection"></div>
+            </article>
 
-        <article class="project project--pc reveal" data-tilt>
-          <a href="./pc-configurator/" target="_blank" rel="noopener" aria-label="Открыть сайт конфигуратора ПК">
-            <div class="project-info">
-              <span class="project-index">04 / Configurator</span>
-              <h3>PC Config</h3>
-              <p>Интерактивная сборка компьютера: сложный выбор превращён в ясный сценарий.</p>
-              <ul><li>Product UX</li><li>3D feel</li><li>Frontend</li></ul>
-            </div>
-            <div class="project-visual pc-visual" aria-hidden="true">
-              <div class="pc-case"><i></i><i></i><i></i><b></b></div>
-              <div class="pc-lines"><span></span><span></span><span></span></div>
-              <small>BUILD_04 / READY</small>
-            </div>
-            <span class="project-arrow">↗</span>
-          </a>
-        </article>
+            <!-- Card 4: PC Config -->
+            <article class="coverflow-card project--pc" data-index="3">
+              <a href="./pc-configurator/" target="_blank" rel="noopener" aria-label="Открыть сайт конфигуратора ПК">
+                <div class="cf-card-top">
+                  <span class="cf-index">04 / CONFIGURATOR</span>
+                  <span class="cf-link-icon">↗</span>
+                </div>
+                <div class="cf-visual-wrapper pc-visual">
+                  <div class="pc-case"><i></i><i></i><i></i><b></b></div>
+                  <div class="pc-lines"><span></span><span></span><span></span></div>
+                  <small>BUILD_04 / READY</small>
+                </div>
+                <div class="cf-card-bottom">
+                  <h3>PC Config</h3>
+                  <p>Интерактивная сборка компьютера: сложный выбор превращён в ясный сценарий.</p>
+                  <ul class="cf-tags"><li>Product UX</li><li>3D feel</li><li>Frontend</li></ul>
+                </div>
+              </a>
+              <div class="coverflow-reflection"></div>
+            </article>
+          </div>
+
+          <button class="coverflow-arrow coverflow-arrow--next" data-coverflow-next aria-label="Следующий проект">›</button>
+        </div>
+
+        <div class="coverflow-nav">
+          <div class="coverflow-dots" data-coverflow-dots>
+            <button class="coverflow-dot active" data-dot="0" aria-label="Проект 1"></button>
+            <button class="coverflow-dot" data-dot="1" aria-label="Проект 2"></button>
+            <button class="coverflow-dot" data-dot="2" aria-label="Проект 3"></button>
+            <button class="coverflow-dot" data-dot="3" aria-label="Проект 4"></button>
+          </div>
+          <div class="coverflow-readout" data-coverflow-readout>
+            <span class="coverflow-counter">01 / 04</span>
+            <span class="coverflow-active-title">СтудентФуд</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -262,6 +299,6 @@
     </section>
   </main>
 
-  <script src="./main.js?v=9"></script>
+  <script src="./main.js?v=19"></script>
 </body>
 </html>

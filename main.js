@@ -6,7 +6,6 @@ const hero = document.querySelector('[data-hero]');
 const heroCopy = document.querySelector('.hero-copy');
 const heroHalo = document.querySelector('.hero-halo');
 const scrollProgressBar = document.querySelector('[data-scroll-progress]');
-const projectVisuals = [...document.querySelectorAll('.project-visual')];
 
 window.addEventListener('scroll', () => {
   header?.classList.toggle('scrolled', window.scrollY > 24);
@@ -25,15 +24,6 @@ const updateScrollMotion = () => {
     heroCopy.style.opacity = String(1 - eased * .78);
     heroHalo.style.transform = `translate(-50%, -50%) rotate(${eased * 28}deg) scale(${1 + eased * .3})`;
     heroHalo.style.opacity = String(1 - eased * .72);
-  }
-
-  if (!reducedMotion) {
-    projectVisuals.forEach((visual) => {
-      const rect = visual.getBoundingClientRect();
-      if (rect.bottom < -100 || rect.top > innerHeight + 100) return;
-      const offset = (rect.top + rect.height / 2 - innerHeight / 2) / innerHeight;
-      visual.style.setProperty('--parallax', `${offset * -26}px`);
-    });
   }
 };
 
@@ -74,7 +64,7 @@ if (customCursor && !reducedMotion && matchMedia('(pointer:fine)').matches) {
     cursorTargetX = event.clientX;
     cursorTargetY = event.clientY;
     customCursor.classList.add('visible');
-    customCursor.classList.toggle('is-active', Boolean(event.target.closest('a, button, [data-tilt]')));
+    customCursor.classList.toggle('is-active', Boolean(event.target.closest('a, button, .coverflow-card')));
     if (cursorReadout) {
       cursorReadout.textContent = `X ${String(Math.round(cursorTargetX)).padStart(4, '0')} / Y ${String(Math.round(cursorTargetY)).padStart(4, '0')}`;
     }
@@ -151,18 +141,6 @@ const counterObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.7 });
 document.querySelectorAll('[data-counter]').forEach((counter) => counterObserver.observe(counter));
-
-if (!reducedMotion && matchMedia('(pointer:fine)').matches) {
-  document.querySelectorAll('[data-tilt]').forEach((card) => {
-    card.addEventListener('pointermove', (event) => {
-      const rect = card.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `perspective(1200px) rotateX(${-y * 2.2}deg) rotateY(${x * 2.2}deg)`;
-    });
-    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
-  });
-}
 
 const canvas = document.getElementById('orb-canvas');
 if (canvas) {
@@ -267,4 +245,190 @@ if (molecule && !reducedMotion) {
     if (rect.bottom < 0 || rect.top > innerHeight) return;
     molecule.style.transform = `rotate(${(innerHeight / 2 - rect.top) * .012}deg)`;
   }, { passive: true });
+}
+
+// ----------------------------------------------------
+// 3D Cover Flow Interactive Controller
+// ----------------------------------------------------
+const coverflowStage = document.querySelector('[data-coverflow-stage]');
+const coverflowTrack = document.querySelector('[data-coverflow-track]');
+const coverflowCards = [...document.querySelectorAll('.coverflow-card')];
+const coverflowPrev = document.querySelector('[data-coverflow-prev]');
+const coverflowNext = document.querySelector('[data-coverflow-next]');
+const coverflowDots = [...document.querySelectorAll('.coverflow-dot')];
+const coverflowCounter = document.querySelector('.coverflow-counter');
+const coverflowActiveTitle = document.querySelector('.coverflow-active-title');
+
+if (coverflowStage && coverflowCards.length > 0) {
+  let currentIndex = 0;
+  const totalCards = coverflowCards.length;
+
+  const projectTitles = [
+    { index: '01', total: '04', title: 'СтудентФуд' },
+    { index: '02', total: '04', title: 'Blackout' },
+    { index: '03', total: '04', title: 'Автосервис' },
+    { index: '04', total: '04', title: 'PC Config' },
+  ];
+
+  function updateCoverflow(dragOffset = 0) {
+    const isMobile = window.innerWidth <= 960;
+    const spacing = isMobile ? 180 : 310;
+
+    coverflowCards.forEach((card, i) => {
+      const offset = (i - currentIndex) + dragOffset;
+      const absOffset = Math.abs(offset);
+      
+      let rotateY = 0;
+      let translateX = 0;
+      let translateZ = 0;
+      let scale = 1;
+      let opacity = 1;
+      let zIndex = 10 - Math.round(absOffset * 2);
+      let brightness = 1;
+
+      if (offset === 0) {
+        rotateY = 0;
+        translateX = 0;
+        translateZ = isMobile ? 40 : 140;
+        scale = 1;
+        opacity = 1;
+        brightness = 1.05;
+        card.classList.add('is-center');
+      } else if (offset < 0) {
+        rotateY = Math.min(58, 34 + absOffset * 6);
+        translateX = offset * spacing - (isMobile ? 15 : 40);
+        translateZ = -Math.min(340, 140 + absOffset * 80);
+        scale = Math.max(0.7, 1 - absOffset * 0.12);
+        opacity = Math.max(0, 0.7 - (absOffset - 1) * 0.5);
+        brightness = Math.max(0.35, 1 - absOffset * 0.25);
+        card.classList.remove('is-center');
+      } else {
+        rotateY = -Math.min(58, 34 + absOffset * 6);
+        translateX = offset * spacing + (isMobile ? 15 : 40);
+        translateZ = -Math.min(340, 140 + absOffset * 80);
+        scale = Math.max(0.7, 1 - absOffset * 0.12);
+        opacity = Math.max(0, 0.7 - (absOffset - 1) * 0.5);
+        brightness = Math.max(0.35, 1 - absOffset * 0.25);
+        card.classList.remove('is-center');
+      }
+
+      card.style.transform = `translate3d(${translateX}px, 0, ${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`;
+      card.style.opacity = String(opacity);
+      card.style.zIndex = String(zIndex);
+      card.style.filter = `brightness(${brightness})`;
+    });
+
+    coverflowDots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === currentIndex);
+    });
+
+    if (coverflowCounter && coverflowActiveTitle && projectTitles[currentIndex]) {
+      coverflowCounter.textContent = `${projectTitles[currentIndex].index} / ${projectTitles[currentIndex].total}`;
+      coverflowActiveTitle.textContent = projectTitles[currentIndex].title;
+    }
+  }
+
+  function goToIndex(index) {
+    currentIndex = Math.max(0, Math.min(totalCards - 1, index));
+    updateCoverflow();
+  }
+
+  coverflowPrev?.addEventListener('pointerdown', (e) => e.stopPropagation());
+  coverflowNext?.addEventListener('pointerdown', (e) => e.stopPropagation());
+
+  coverflowPrev?.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    goToIndex(currentIndex - 1);
+  });
+
+  coverflowNext?.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    goToIndex(currentIndex + 1);
+  });
+
+  coverflowDots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => goToIndex(idx));
+  });
+
+  coverflowCards.forEach((card, idx) => {
+    card.addEventListener('click', (e) => {
+      if (idx !== currentIndex) {
+        e.preventDefault();
+        e.stopPropagation();
+        goToIndex(idx);
+      }
+    });
+  });
+
+  let startX = 0;
+  let isDragging = false;
+  let dragDelta = 0;
+
+  coverflowStage.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('.coverflow-arrow, .coverflow-dot')) return;
+    if (e.button && e.button !== 0) return;
+    startX = e.clientX;
+    isDragging = true;
+    dragDelta = 0;
+    coverflowStage.setPointerCapture(e.pointerId);
+  });
+
+  coverflowStage.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    const deltaX = e.clientX - startX;
+    const stageWidth = coverflowStage.offsetWidth || 800;
+    dragDelta = deltaX / (stageWidth * 0.35);
+    
+    let projectedDrag = -dragDelta;
+    if (currentIndex === 0 && projectedDrag < 0) projectedDrag *= 0.3;
+    if (currentIndex === totalCards - 1 && projectedDrag > 0) projectedDrag *= 0.3;
+
+    updateCoverflow(-projectedDrag);
+  });
+
+  const endDrag = (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    try { coverflowStage.releasePointerCapture(e.pointerId); } catch (_) {}
+
+    if (Math.abs(dragDelta) > 0.22) {
+      if (dragDelta > 0) {
+        goToIndex(currentIndex - 1);
+      } else {
+        goToIndex(currentIndex + 1);
+      }
+    } else {
+      updateCoverflow();
+    }
+  };
+
+  coverflowStage.addEventListener('pointerup', endDrag);
+  coverflowStage.addEventListener('pointercancel', endDrag);
+
+  coverflowStage.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      goToIndex(currentIndex - 1);
+    } else if (e.key === 'ArrowRight') {
+      goToIndex(currentIndex + 1);
+    }
+  });
+
+  let wheelTimeout;
+  coverflowStage.addEventListener('wheel', (e) => {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY) || Math.abs(e.deltaY) > 20) {
+      e.preventDefault();
+      if (wheelTimeout) return;
+      if (e.deltaX > 18 || e.deltaY > 18) {
+        goToIndex(currentIndex + 1);
+      } else if (e.deltaX < -18 || e.deltaY < -18) {
+        goToIndex(currentIndex - 1);
+      }
+      wheelTimeout = setTimeout(() => { wheelTimeout = null; }, 320);
+    }
+  }, { passive: false });
+
+  window.addEventListener('resize', () => updateCoverflow());
+  updateCoverflow();
 }
