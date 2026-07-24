@@ -275,9 +275,9 @@ if (coverflowStage && coverflowCards.length > 0) {
     const isMobilePhone = windowWidth <= 600;
     const isTablet = windowWidth > 600 && windowWidth <= 960;
     
-    const spacing = isMobilePhone ? 140 : (isTablet ? 200 : 310);
-    const maxRotate = isMobilePhone ? 18 : (isTablet ? 28 : 58);
-    const maxZ = isMobilePhone ? -180 : -340;
+    const spacing = isMobilePhone ? 135 : (isTablet ? 200 : 310);
+    const maxRotate = isMobilePhone ? 16 : (isTablet ? 28 : 58);
+    const maxZ = isMobilePhone ? -160 : -340;
 
     coverflowCards.forEach((card, i) => {
       const offset = (i - currentIndex) + dragOffset;
@@ -294,23 +294,23 @@ if (coverflowStage && coverflowCards.length > 0) {
       if (offset === 0) {
         rotateY = 0;
         translateX = 0;
-        translateZ = isMobilePhone ? 20 : (isTablet ? 60 : 140);
+        translateZ = isMobilePhone ? 15 : (isTablet ? 60 : 140);
         scale = 1;
         opacity = 1;
         brightness = 1.05;
         card.classList.add('is-center');
       } else if (offset < 0) {
-        rotateY = Math.min(maxRotate, 16 + absOffset * 6);
-        translateX = offset * spacing - (isMobilePhone ? 10 : (isTablet ? 25 : 40));
-        translateZ = -Math.min(Math.abs(maxZ), 100 + absOffset * 60);
+        rotateY = Math.min(maxRotate, 14 + absOffset * 5);
+        translateX = offset * spacing - (isMobilePhone ? 8 : (isTablet ? 25 : 40));
+        translateZ = -Math.min(Math.abs(maxZ), 80 + absOffset * 60);
         scale = Math.max(0.78, 1 - absOffset * 0.1);
         opacity = Math.max(0, 0.75 - (absOffset - 1) * 0.55);
         brightness = Math.max(0.4, 1 - absOffset * 0.25);
         card.classList.remove('is-center');
       } else {
-        rotateY = -Math.min(maxRotate, 16 + absOffset * 6);
-        translateX = offset * spacing + (isMobilePhone ? 10 : (isTablet ? 25 : 40));
-        translateZ = -Math.min(Math.abs(maxZ), 100 + absOffset * 60);
+        rotateY = -Math.min(maxRotate, 14 + absOffset * 5);
+        translateX = offset * spacing + (isMobilePhone ? 8 : (isTablet ? 25 : 40));
+        translateZ = -Math.min(Math.abs(maxZ), 80 + absOffset * 60);
         scale = Math.max(0.78, 1 - absOffset * 0.1);
         opacity = Math.max(0, 0.75 - (absOffset - 1) * 0.55);
         brightness = Math.max(0.4, 1 - absOffset * 0.25);
