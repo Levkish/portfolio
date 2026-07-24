@@ -111,12 +111,11 @@ button { color: inherit; font: inherit; }
 .work-heading > p { margin: 0 0 8px; color: var(--silver); line-height: 1.5; }
 
 /* --------------------------------------------------
-   3D Cover Flow Visual 100vw Stage & Compact Drag Trigger
+   3D Cover Flow Responsive Architectural Showcase
    -------------------------------------------------- */
 .coverflow-wrapper { position: relative; width: 100vw; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 20px 0 60px; perspective: 1400px; overflow: hidden; user-select: none; mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%); }
 
-/* The invisible interactive drag trigger is narrowed to min(980px, 86vw) centered */
-.coverflow-stage { position: relative; width: min(980px, 86vw); margin: 0 auto; min-height: 640px; display: flex; align-items: center; justify-content: center; transform-style: preserve-3d; cursor: grab; outline: none; overflow: visible; }
+.coverflow-stage { position: relative; width: min(980px, 86vw); margin: 0 auto; min-height: 640px; display: flex; align-items: center; justify-content: center; transform-style: preserve-3d; cursor: grab; outline: none; overflow: visible; touch-action: pan-y; }
 .coverflow-stage:active { cursor: grabbing; }
 
 .coverflow-track { position: relative; width: 100%; height: 560px; display: flex; align-items: center; justify-content: center; transform-style: preserve-3d; }
@@ -192,7 +191,7 @@ button { color: inherit; font: inherit; }
 /* Glass Mirror Reflection */
 .coverflow-reflection { position: absolute; top: 100%; left: 0; width: 100%; height: 24%; background: linear-gradient(to bottom, rgba(203, 255, 252, 0.12) 0%, transparent 100%); pointer-events: none; opacity: 0.25; mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent); border-radius: 20px; }
 
-/* Arrows & Controls (Positions relative to stage boundaries) */
+/* Arrows & Controls */
 .coverflow-arrow { position: absolute; top: 50%; z-index: 100; width: 62px; height: 62px; border-radius: 50%; background: rgba(1, 29, 28, 0.88); border: 1px solid rgba(203, 255, 252, 0.4); color: var(--cyan); font-size: 32px; line-height: 1; display: grid; place-items: center; cursor: pointer; transform: translateY(-50%); transition: all 0.3s var(--ease); backdrop-filter: blur(14px); pointer-events: auto; }
 .coverflow-arrow--prev { left: -10px; }
 .coverflow-arrow--next { right: -10px; }
@@ -308,7 +307,7 @@ button { color: inherit; font: inherit; }
   .coverflow-stage { width: 100%; }
   .coverflow-stage { min-height: 600px; }
   .coverflow-track { height: 520px; }
-  .coverflow-card { width: min(580px, 90vw); height: 500px; }
+  .coverflow-card { width: min(560px, 90vw); height: 490px; }
   .cf-visual-wrapper { height: 240px; }
   .cf-card-bottom h3 { font-size: 26px; }
   .coverflow-arrow--prev { left: 8px; }
@@ -329,19 +328,26 @@ button { color: inherit; font: inherit; }
   .signal-grid > .display-heading { font-size: 14vw; }
   .signal-grid, .work-heading { padding: 60px 0; }
 
-  .coverflow-stage { min-height: 520px; }
-  .coverflow-track { height: 460px; }
-  .coverflow-card { width: 90vw; height: 440px; }
-  .coverflow-card > a { padding: 18px; }
-  .cf-visual-wrapper { height: 200px; }
-  .food-layout b { font-size: 24px; }
-  .food-plate { width: 100px; height: 100px; }
-  .wear-word { font-size: 52px; }
-  .auto-wheel { width: 170px; border-width: 24px; }
-  .auto-visual > b { font-size: 24px; }
-  .pc-case { width: 170px; height: 210px; }
-  .cf-card-bottom h3 { font-size: 22px; }
-  .cf-card-bottom p { font-size: 12px; margin-bottom: 10px; }
+  .coverflow-stage { min-height: 500px; }
+  .coverflow-track { height: 440px; }
+  .coverflow-card { width: calc(100vw - 36px); max-width: 380px; height: 430px; border-radius: 16px; }
+  .coverflow-card > a { padding: 16px; }
+  .cf-card-top { margin-bottom: 10px; }
+  .cf-visual-wrapper { height: 190px; border-radius: 10px; }
+  .food-layout b { font-size: 22px; }
+  .food-plate { width: 90px; height: 90px; }
+  .wear-word { font-size: 48px; }
+  .auto-wheel { width: 160px; border-width: 22px; }
+  .auto-visual > b { font-size: 22px; }
+  .pc-case { width: 160px; height: 200px; }
+  .cf-card-bottom { padding-top: 10px; }
+  .cf-card-bottom h3 { font-size: 22px; margin-bottom: 4px; }
+  .cf-card-bottom p { font-size: 12px; line-height: 1.35; margin-bottom: 10px; }
+  .cf-tags li { padding: 3px 7px; font-size: 7px; }
+  .coverflow-arrow { width: 46px; height: 46px; font-size: 26px; }
+  .coverflow-arrow--prev { left: 4px; }
+  .coverflow-arrow--next { right: 4px; }
+  .coverflow-nav { margin-top: 18px; gap: 12px; }
 }
 
 @media (pointer: coarse), (max-width: 760px) {

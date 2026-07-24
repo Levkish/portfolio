@@ -248,7 +248,7 @@ if (molecule && !reducedMotion) {
 }
 
 // ----------------------------------------------------
-// 3D Cover Flow Interactive Controller
+// 3D Cover Flow Responsive Controller
 // ----------------------------------------------------
 const coverflowStage = document.querySelector('[data-coverflow-stage]');
 const coverflowTrack = document.querySelector('[data-coverflow-track]');
@@ -271,8 +271,13 @@ if (coverflowStage && coverflowCards.length > 0) {
   ];
 
   function updateCoverflow(dragOffset = 0) {
-    const isMobile = window.innerWidth <= 960;
-    const spacing = isMobile ? 180 : 310;
+    const windowWidth = window.innerWidth;
+    const isMobilePhone = windowWidth <= 600;
+    const isTablet = windowWidth > 600 && windowWidth <= 960;
+    
+    const spacing = isMobilePhone ? 140 : (isTablet ? 200 : 310);
+    const maxRotate = isMobilePhone ? 18 : (isTablet ? 28 : 58);
+    const maxZ = isMobilePhone ? -180 : -340;
 
     coverflowCards.forEach((card, i) => {
       const offset = (i - currentIndex) + dragOffset;
@@ -289,26 +294,26 @@ if (coverflowStage && coverflowCards.length > 0) {
       if (offset === 0) {
         rotateY = 0;
         translateX = 0;
-        translateZ = isMobile ? 40 : 140;
+        translateZ = isMobilePhone ? 20 : (isTablet ? 60 : 140);
         scale = 1;
         opacity = 1;
         brightness = 1.05;
         card.classList.add('is-center');
       } else if (offset < 0) {
-        rotateY = Math.min(58, 34 + absOffset * 6);
-        translateX = offset * spacing - (isMobile ? 15 : 40);
-        translateZ = -Math.min(340, 140 + absOffset * 80);
-        scale = Math.max(0.7, 1 - absOffset * 0.12);
-        opacity = Math.max(0, 0.7 - (absOffset - 1) * 0.5);
-        brightness = Math.max(0.35, 1 - absOffset * 0.25);
+        rotateY = Math.min(maxRotate, 16 + absOffset * 6);
+        translateX = offset * spacing - (isMobilePhone ? 10 : (isTablet ? 25 : 40));
+        translateZ = -Math.min(Math.abs(maxZ), 100 + absOffset * 60);
+        scale = Math.max(0.78, 1 - absOffset * 0.1);
+        opacity = Math.max(0, 0.75 - (absOffset - 1) * 0.55);
+        brightness = Math.max(0.4, 1 - absOffset * 0.25);
         card.classList.remove('is-center');
       } else {
-        rotateY = -Math.min(58, 34 + absOffset * 6);
-        translateX = offset * spacing + (isMobile ? 15 : 40);
-        translateZ = -Math.min(340, 140 + absOffset * 80);
-        scale = Math.max(0.7, 1 - absOffset * 0.12);
-        opacity = Math.max(0, 0.7 - (absOffset - 1) * 0.5);
-        brightness = Math.max(0.35, 1 - absOffset * 0.25);
+        rotateY = -Math.min(maxRotate, 16 + absOffset * 6);
+        translateX = offset * spacing + (isMobilePhone ? 10 : (isTablet ? 25 : 40));
+        translateZ = -Math.min(Math.abs(maxZ), 100 + absOffset * 60);
+        scale = Math.max(0.78, 1 - absOffset * 0.1);
+        opacity = Math.max(0, 0.75 - (absOffset - 1) * 0.55);
+        brightness = Math.max(0.4, 1 - absOffset * 0.25);
         card.classList.remove('is-center');
       }
 
@@ -363,23 +368,38 @@ if (coverflowStage && coverflowCards.length > 0) {
   });
 
   let startX = 0;
+  let startY = 0;
   let isDragging = false;
+  let isScrollLock = false;
   let dragDelta = 0;
 
   coverflowStage.addEventListener('pointerdown', (e) => {
     if (e.target.closest('.coverflow-arrow, .coverflow-dot')) return;
     if (e.button && e.button !== 0) return;
     startX = e.clientX;
+    startY = e.clientY;
     isDragging = true;
+    isScrollLock = false;
     dragDelta = 0;
-    coverflowStage.setPointerCapture(e.pointerId);
   });
 
   coverflowStage.addEventListener('pointermove', (e) => {
     if (!isDragging) return;
     const deltaX = e.clientX - startX;
-    const stageWidth = coverflowStage.offsetWidth || 800;
-    dragDelta = deltaX / (stageWidth * 0.35);
+    const deltaY = e.clientY - startY;
+
+    if (!isScrollLock && Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 8) {
+      isDragging = false;
+      return;
+    }
+
+    if (Math.abs(deltaX) > 8) {
+      isScrollLock = true;
+      try { coverflowStage.setPointerCapture(e.pointerId); } catch (_) {}
+    }
+
+    const stageWidth = coverflowStage.offsetWidth || 380;
+    dragDelta = deltaX / (stageWidth * 0.38);
     
     let projectedDrag = -dragDelta;
     if (currentIndex === 0 && projectedDrag < 0) projectedDrag *= 0.3;
